@@ -3,72 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><bonelab class="html"></bonelab></title>
+    <title>Bonelab Mods - External.gg Mods</title>
     <style>
         body {
-            background-color: #2a004e;
+            background-color: #1a002b;
             color: white;
-            font-family: Arial, sans-serif;
             text-align: center;
-            padding: 20px;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            position: relative;
         }
+
         .container {
-            max-width: 800px;
-            margin: auto;
-            background-color: rgba(0, 0, 0, 0.6);
             padding: 20px;
-            border-radius: 10px;
         }
-        h1 {
-            font-size: 32px;
-        }
-        .mod-link {
-            display: inline-block;
-            background-color: #4a00e0;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 10px;
-            transition: 0.3s;
-        }
-        .mod-link:hover {
-            background-color: #6a00ff;
-            transform: scale(1.1);
-        }
-        .mod {
-            background-color: rgba(255, 255, 255, 0.1);
+
+        /* Scrollable Mods List */
+        .mods-container {
+            max-height: 500px;
+            overflow-y: auto;
             padding: 15px;
-            margin: 15px 0;
-            border-radius: 8px;
-            text-align: left;
+            border: 2px solid #7300ff;
+            border-radius: 10px;
+            width: 60%;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.5);
         }
-        .mod h2 {
-            font-size: 24px;
-        }
-        .mod p {
-            font-size: 16px;
-        }
-        .mod a {
-            color: lightblue;
+
+        .download-btn {
+            background: #7300ff;
+            color: white;
+            border: none;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            font-size: 18px;
+            transition: 0.3s;
+            box-shadow: 0 0 15px #7300ff;
+            display: block;
+            width: 90%;
+            margin: 10px auto;
             text-decoration: none;
-            font-weight: bold;
+            text-align: center;
         }
-        .mod a:hover {
-            text-decoration: underline;
+
+        .download-btn:hover {
+            background: #a34aff;
+            box-shadow: 0 0 25px #a34aff;
+        }
+
+        /* Back to Home Button */
+        .back-home {
+            background: #ff00ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px #ff00ff;
+        }
+
+        .back-home:hover {
+            background: #ff44ff;
+            box-shadow: 0 0 20px #ff44ff;
+        }
+
+        /* Rain Particles */
+        .rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .raindrop {
+            position: absolute;
+            width: 2px;
+            height: 10px;
+            background-color: #7300ff;
+            opacity: 0.6;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
         }
     </style>
-    <h2>Guys with is a wip. my other website broke so this one is in develepment</h2>
 </head>
 <body>
-    <div>
 
-    <a class="btn" href="strore.html"> go to gorilla tag</a>
+    <div class="container">
+        <h1>🔫 Bonelab Mods</h1>
+        <p>Download the best Bonelab mods. You must be logged in to download.</p>
 
+        <!-- Scrollable Mods List -->
+        <div class="mods-container" id="mods-list"></div>
+
+        <button class="back-home" onclick="window.location.href='index.html'">Back to Home</button>
     </div>
-    <a class="btn"" href="index.html">🦍 Return</a>
-    
+
+    <!-- Rain Particle Effect -->
+    <div class="rain" id="rain-container"></div>
+
+    <script>
+        // Generate medium rain effect
+        function createRain() {
+            const rainContainer = document.getElementById("rain-container");
+            for (let i = 0; i < 50; i++) {
+                let drop = document.createElement("div");
+                drop.classList.add("raindrop");
+                drop.style.left = Math.random() * 100 + "vw";
+                drop.style.animationDuration = (Math.random() * 2 + 2) + "s";
+                drop.style.animationDelay = Math.random() * 2 + "s";
+                rainContainer.appendChild(drop);
+            }
+        }
+
+        createRain();
+
+        // Check if the user is logged in
+        function isLoggedIn() {
+            return localStorage.getItem("loggedIn") === "true";
+        }
+
+        function updateButtons() {
+            document.querySelectorAll(".download-btn").forEach(btn => {
+                if (isLoggedIn()) {
+                    btn.classList.add("active");
+                    btn.removeAttribute("disabled");
+                    btn.style.cursor = "pointer";
+                } else {
+                    btn.classList.remove("active");
+                    btn.setAttribute("disabled", "true");
+                    btn.style.cursor = "not-allowed";
+                }
+            });
+        }
+
+        const mods = [
+            { name: "Realistic Gun Sounds", link: "https://example.com/mod1.zip" },
+            { name: "Lightsaber Pack", link: "https://example.com/mod2.zip" },
+            { name: "Spiderman Swing Mod", link: "https://example.com/mod3.zip" },
+            { name: "VR Hands Enhanced", link: "https://example.com/mod4.zip" },
+            { name: "Custom NPC AI", link: "https://example.com/mod5.zip" },
+            { name: "Super Strength Mod", link: "https://example.com/mod6.zip" },
+            { name: "Grappling Hook", link: "https://example.com/mod7.zip" },
+            { name: "Bullet Time Mode", link: "https://example.com/mod8.zip" },
+            { name: "Portal Gun", link: "https://example.com/mod9.zip" },
+            { name: "Futuristic Weapons", link: "https://example.com/mod10.zip" }
+        ];
+
+        const modsList = document.getElementById("mods-list");
+
+        mods.forEach(mod => {
+            let modElement = document.createElement("div");
+            modElement.innerHTML = `
+                <h2>${mod.name}</h2>
+                <button class="download-btn" onclick="downloadMod('${mod.link}')" disabled>Download</button>
+            `;
+            modsList.appendChild(modElement);
+        });
+
+        function downloadMod(link) {
+            if (isLoggedIn()) {
+                window.location.href = link;
+            } else {
+                alert("You must be logged in to download mods.");
+            }
+        }
+
+        updateButtons();
+    </script>
+
 </body>
 </html>
