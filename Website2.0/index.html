@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>External.gg Mods</title>
+    <style>
+        /* Background & Text Styling */
+        body {
+            background-color: #1a001a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        /* Main Container - No Background */
+        .container {
+            max-width: 1300px; /* Wider container */
+            margin: auto;
+            padding: 20px; /* Keeps it shorter */
+            border-radius: 10px;
+            box-shadow: none; /* No background or shadow */
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Section Styling */
+        .category {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #8400ff;
+        }
+        .category h2 {
+            margin-bottom: 10px;
+            color: #ff00ff;
+        }
+
+        /* Button Grid - More Even Spacing */
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Wider buttons */
+            gap: 20px; /* More space between buttons */
+            justify-content: center;
+        }
+
+        /* Button Styling */
+        .btn {
+            display: inline-block;
+            background-color: #9c27b0;
+            color: #ffffff;
+            padding: 12px 22px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: 0.3s;
+            box-shadow: 0px 0px 10px #ff00ff;
+            text-align: center;
+        }
+        .btn:hover {
+            background-color: #ff00ff;
+            box-shadow: 0px 0px 15px #ffffff;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 14px;
+            background: #22002a;
+            border-radius: 5px;
+        }
+
+        /* Snow Effect (Reduced & Slower) */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: #ffffff;
+            opacity: 0.7;
+            font-size: 12px;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Snow Effect -->
+    <script>
+        function createSnowflakes() {
+            const snowContainer = document.body;
+            for (let i = 0; i < 20; i++) { // Reduced amount
+                let snowflake = document.createElement("div");
+                snowflake.innerHTML = "❄";
+                snowflake.classList.add("snowflake");
+                snowflake.style.left = Math.random() * 100 + "vw";
+                snowflake.style.animationDuration = Math.random() * 5 + 5 + "s"; // Slower fall
+                snowflake.style.fontSize = Math.random() * 10 + 10 + "px";
+                snowflake.style.animationDelay = Math.random() * 10 + "s";
+                snowContainer.appendChild(snowflake);
+                
+                setTimeout(() => {
+                    snowflake.remove();
+                }, 10000);
+            }
+        }
+        setInterval(createSnowflakes, 1500);
+    </script>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h1>🚀 Welcome to External.gg Mods</h1>
+
+        <!-- Games Category -->
+        <div class="category">
+            <h2>🎮 Games</h2>
+            <div class="button-grid">
+                <a class="btn"" href="strore.html">🦍 Gorilla Tag Mods</a>
+                <a class="btn" href="Bonelab.html">🔫 Bonelab Mods</a>
+                <a class="btn" href="Boneworks.html">⚔️ Boneworks Mods</a>
+                <a class="btn" href="Beaming.Drive.html">🏎️ BeamNG.drive Mods</a>
+            </div>
+        </div>
+
+        <!-- Community & Extras Category -->
+        <div class="category">
+            <h2>🌍 Community & Extras</h2>
+            <div class="button-grid">
+                <a class="btn" href="CumunityMods.html">🌍 Community Mods</a>
+                <a class="btn" href="FeaturedMods.html">⭐ Featured Mods</a>
+                <a class="btn" href="Announcements.html">📢 Announcements</a>
+            </div>
+        </div>
+
+        <!-- Essentials Category -->
+        <div class="category">
+            <h2>🛠️ Essentials</h2>
+            <div class="button-grid">
+                <a class="btn" href="Policy.html">🔒 Privacy Policy</a>
+                <a class="btn" href="About.html">ℹ️ About Us</a>
+                <a class="btn" href="Contact.html">📧 Contact Us</a>
+                <a class="btn" href="Services.html">🛠️ Services</a>
+                <a class="btn" href="GetStarted.html">🚀 Getting Started</a>
+                <a class="btn" href="Code.Html">🦍 login/sign up</a>
+            </div>
+        </div>
+
+        <!-- Extras Category -->
+        <div class="category">
+            <h2>📂 Extras</h2>
+            <div class="button-grid">
+                <a class="btn" href="ModdingTools.html">🛠️ Modding Tools</a>
+                <a class="btn" href="GameUpdates.html">🎮 Game Updates</a>
+            </div>
+        </div>
+
+        <!-- External Links Category -->
+        <div class="category">
+            <h2>🔗 External Links</h2>
+            <div class="button-grid">
+                <a class="btn" href="https://discord.gg/Sf9RQkTGZD" target="_blank">💬 Join Discord</a>
+                <a class="btn" href="https://www.youtube.com/@External.gg1/videos" target="_blank">📺 Go to YouTube</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p><strong>⚠️ Disclaimer:</strong> Modding may result in bans or game instability. **External.gg Mods is not responsible for any consequences of using mods.**</p>
+        <p>🔔 **Like & Subscribe** to our YouTube channel for more modding tutorials and updates!  
+        <br>📺 <a href="https://www.youtube.com/@External.gg1/videos" class="btn" target="_blank">Go to YouTube</a></p>
+    </div>
+
+</body>
+</html>
